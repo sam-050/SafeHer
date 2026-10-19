@@ -1,0 +1,1159 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SafeHer | Your safety, your journey</title>
+
+<style>
+:root {
+  --purple: #20B8B2;
+  --dark: #164E52;
+  --muted: #648487;
+  --bg: #F3FAFA;
+  --line: #DCECEC;
+  --white: #FFFFFF;
+  --pink: #FFF0F0;
+  --green: #16866A;
+  --red: #E34D61;
+  --aqua: #20B8B2;
+  --aqua-dark: #168F8B;
+  --mint: #E7F8F6;
+  --mint-light: #F5FBFB;
+  --teal: #164E52;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--dark);
+}
+
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid #8DE0D7;
+  outline-offset: 2px;
+}
+
+header {
+  height: 72px;
+  background: white;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5%;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.logo {
+  font-size: 23px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.logo span { color: var(--aqua-dark); }
+
+.tag {
+  color: var(--aqua-dark);
+  background: #E5F8F6;
+  padding: 9px 13px;
+  border-radius: 30px;
+  font-size: 12px;
+}
+
+.hidden { display: none !important; }
+
+.login-layout {
+  max-width: 1100px;
+  margin: 38px auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.hero {
+  padding: 42px;
+  border-radius: 26px;
+  color: white;
+  background: linear-gradient(145deg, #164E52, #20B8B2 65%, #8DE0D7);
+  min-height: 490px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.eyebrow {
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.hero h1 {
+  font-size: 45px;
+  line-height: 1.12;
+  letter-spacing: -2px;
+  margin: 24px 0 15px;
+}
+
+.hero h1 span { color: #C9FFF5 !important; }
+
+.hero p {
+  color: #E8FFFC;
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+.hero ul {
+  list-style: none;
+  padding: 0;
+  line-height: 2.7;
+  font-size: 14px;
+}
+
+.login-card, .card {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 26px;
+  box-shadow: 0 10px 35px #164E5209;
+}
+
+.login-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 38px;
+}
+
+h2 { margin-top: 0; letter-spacing: -.7px; }
+
+.subtitle {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin: 15px 0;
+}
+
+label {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+input, select, textarea {
+  width: 100%;
+  border: 1px solid #D3E5E5;
+  border-radius: 11px;
+  padding: 12px;
+  background: #FCFFFF;
+  color: var(--dark);
+}
+
+input::placeholder, textarea::placeholder { color: #92A9AA; }
+
+textarea { min-height: 95px; resize: vertical; }
+
+.btn {
+  border: 0;
+  border-radius: 11px;
+  padding: 12px 16px;
+  font-weight: bold;
+  transition: background .15s, transform .15s;
+}
+
+.btn:active { transform: scale(.98); }
+
+.primary {
+  background: var(--aqua);
+  color: white;
+}
+
+.primary:hover { background: var(--aqua-dark); }
+
+.soft {
+  background: #E2F8F6;
+  color: #168F8B;
+}
+
+.soft:hover { background: #CFF1ED; }
+
+.outline {
+  background: white;
+  border: 1px solid var(--line);
+  color: var(--dark);
+}
+
+.outline:hover { background: #F0FAF9; }
+
+.danger { background: var(--red); color: white; }
+.danger:hover { background: #C9374C; }
+.full { width: 100%; }
+
+.message {
+  padding: 11px;
+  border-radius: 10px;
+  font-size: 12px;
+  margin: 10px 0;
+}
+
+.error {
+  background: #FFF0F2;
+  color: #B62842;
+  border: 1px solid #FFD6DE;
+}
+
+.success {
+  background: #E9FAF3;
+  color: #087957;
+  border: 1px solid #C7F1DF;
+}
+
+.note {
+  font-size: 11px;
+  color: #8BA0A2;
+  line-height: 1.6;
+  margin-top: 18px;
+}
+
+#dashboard { display: none; }
+
+.layout {
+  max-width: 1350px;
+  margin: auto;
+  padding: 28px 4%;
+  display: grid;
+  grid-template-columns: 205px minmax(0, 1fr);
+  gap: 24px;
+}
+
+.sidebar {
+  height: max-content;
+  position: sticky;
+  top: 92px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 12px;
+}
+
+.nav {
+  width: 100%;
+  border: 0;
+  background: white;
+  color: var(--muted);
+  text-align: left;
+  border-radius: 10px;
+  padding: 12px;
+  margin: 3px 0;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.nav:hover, .nav.active {
+  background: #E5F8F6;
+  color: #168F8B;
+}
+
+.main { min-width: 0; }
+
+.welcome {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+  gap: 12px;
+}
+
+.welcome h1 {
+  margin: 0 0 7px;
+  font-size: 27px;
+}
+
+.avatar {
+  width: 43px;
+  height: 43px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #DDF5F1;
+  color: #168F8B;
+  display: grid;
+  place-items: center;
+  font-weight: bold;
+}
+
+.banner {
+  background: linear-gradient(110deg, #E2F8F6, #F2FCFA);
+  border: 1px solid #C9ECE8;
+  padding: 21px;
+  border-radius: 18px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+
+.banner h3 { margin: 0 0 7px; }
+
+.banner p {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.stats, .features {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 17px;
+}
+
+.stat {
+  background: white;
+  border: 1px solid var(--line);
+  padding: 19px;
+  border-radius: 17px;
+}
+
+.stat small {
+  color: var(--muted);
+  display: block;
+  margin-bottom: 10px;
+}
+
+.stat strong { font-size: 29px; }
+
+.section-title {
+  margin: 25px 0 12px;
+  font-size: 17px;
+}
+
+.feature {
+  cursor: pointer;
+  transition: .15s;
+}
+
+.feature:hover {
+  transform: translateY(-2px);
+  border-color: #8DDCD5;
+}
+
+.feature .symbol {
+  font-size: 23px;
+  margin-bottom: 13px;
+  color: var(--aqua-dark);
+}
+
+.feature h3 { margin: 0 0 8px; font-size: 15px; }
+
+.feature p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.panel { display: none; }
+.panel.active { display: block; }
+
+.panel-heading { margin-bottom: 19px; }
+.panel-heading h2 { margin-bottom: 7px; }
+
+.panel-heading p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.two-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.result {
+  margin-top: 15px;
+  padding: 16px;
+  background: #F0FAF9;
+  border: 1px solid #D0EFEB;
+  border-radius: 14px;
+}
+
+.result h3 { margin: 0 0 12px; font-size: 15px; }
+
+.metrics {
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.metrics strong {
+  display: block;
+  color: var(--dark);
+  font-size: 17px;
+  margin-bottom: 5px;
+}
+
+.list {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.list-item {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 13px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.list-item strong {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.list-item small {
+  color: var(--muted);
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+
+.empty {
+  padding: 19px;
+  border: 1px dashed #C8DFDF;
+  border-radius: 12px;
+  color: var(--muted);
+  font-size: 12px;
+  text-align: center;
+}
+
+.sos-box {
+  background: #FFF3F4;
+  border: 1px solid #FFDDE2;
+  border-radius: 18px;
+  padding: 28px;
+  text-align: center;
+}
+
+.sos-circle {
+  width: 100px;
+  height: 100px;
+  margin: 8px auto 20px;
+  border-radius: 50%;
+  background: var(--red);
+  color: white;
+  display: grid;
+  place-items: center;
+  font-size: 27px;
+  font-weight: 900;
+  box-shadow: 0 0 0 9px #FFE1E6;
+}
+
+.map {
+  height: 235px;
+  border-radius: 15px;
+  border: 1px solid #D6EBE9;
+  position: relative;
+  overflow: hidden;
+  background-color: #F0F9F8;
+  background-image:
+    linear-gradient(35deg, transparent 48%, #D0E8E5 49%, #D0E8E5 51%, transparent 52%),
+    linear-gradient(110deg, transparent 48%, #D0E8E5 49%, #D0E8E5 51%, transparent 52%);
+  background-size: 95px 90px, 130px 115px;
+}
+
+.zone {
+  position: absolute;
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  background: #53B89444;
+  border: 1px solid #53B894;
+}
+
+.zone.caution {
+  width: 70px;
+  height: 70px;
+  background: #E9B64C44;
+  border-color: #D5A13B;
+}
+
+.pin {
+  position: absolute;
+  padding: 7px 9px;
+  background: #168F8B;
+  color: white;
+  border-radius: 12px;
+  font-size: 11px;
+}
+
+.modal-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  background: #164E5299;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-backdrop.open { display: flex; }
+
+.modal {
+  max-width: 390px;
+  width: 100%;
+  padding: 25px;
+  border-radius: 20px;
+  background: white;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.modal-actions button { flex: 1; }
+
+footer {
+  text-align: center;
+  font-size: 10px;
+  color: #8BA0A2;
+  margin-top: 26px;
+}
+
+@media(max-width: 850px) {
+  .login-layout {
+    grid-template-columns: 1fr;
+    max-width: 620px;
+  }
+
+  .hero { min-height: 390px; }
+
+  .layout {
+    grid-template-columns: 1fr;
+    padding: 18px;
+  }
+
+  .sidebar {
+    position: static;
+    display: flex;
+    overflow-x: auto;
+    gap: 4px;
+  }
+
+  .nav {
+    width: auto;
+    white-space: nowrap;
+  }
+}
+
+@media(max-width: 560px) {
+  header { padding: 0 15px; }
+  .tag { font-size: 10px; }
+  .hero { padding: 27px; min-height: 350px; }
+  .hero h1 { font-size: 38px; }
+  .login-card { padding: 25px; }
+
+  .stats, .features { grid-template-columns: 1fr; }
+
+  .two-fields {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .welcome h1 { font-size: 22px; }
+  .layout { padding: 15px 10px; }
+  .card { padding: 18px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">♡ Safe<span>Her</span></div>
+  <div class="tag">✦ Your safety, your journey</div>
+</header>
+
+<main id="login-screen" class="login-layout">
+  <section class="hero">
+    <div>
+      <div class="eyebrow">SAFETY · CONFIDENCE · CARE</div>
+      <h1>Your journey.<br>Your safety.<br><span style="color:#C9FFF5">Your choice.</span></h1>
+      <p>Thoughtful safety tools designed to help you feel more prepared and supported wherever you go.</p>
+      <ul>
+        <li>✓ &nbsp; Plan with safety in mind</li>
+        <li>✓ &nbsp; Keep trusted contacts close</li>
+        <li>✓ &nbsp; Report concerns</li>
+      </ul>
+    </div>
+    <div class="note" style="color:#D7FFFA">Student project prototype · Demo data only</div>
+  </section>
+
+  <section class="login-card">
+    <div class="eyebrow" style="color:var(--aqua-dark)">WELCOME TO SAFEHER</div>
+    <h2 style="margin-bottom:7px">Sign in to continue</h2>
+    <p class="subtitle">Your personal safety space, all in one place.</p>
+
+    <form id="login-form" novalidate>
+      <div class="field">
+        <label for="login-email">Email address</label>
+        <input id="login-email" type="text" placeholder="you@example.com">
+      </div>
+
+      <div class="field">
+        <label for="login-password">Password</label>
+        <input id="login-password" type="password" placeholder="Enter your password">
+      </div>
+
+      <div id="login-error" class="message error hidden" role="alert"></div>
+      <button id="login-button" class="btn primary full" type="submit">Sign in →</button>
+    </form>
+
+    <p style="text-align:center;color:#8BA0A2;font-size:11px;margin:18px 0">OR TRY THE PROTOTYPE</p>
+    <button id="demo-login" class="btn soft full" type="button">✦ Continue with demo account</button>
+    <p class="note">Use sample details only. This prototype has no real authentication and is not an emergency service.</p>
+  </section>
+</main>
+
+<main id="dashboard">
+  <div class="layout">
+
+    <aside class="sidebar">
+      <button id="nav-overview" class="nav active" data-panel="overview">⌂ &nbsp; Overview</button>
+      <button id="nav-routes" class="nav" data-panel="routes">⌁ &nbsp; Safe routes</button>
+      <button id="nav-contacts" class="nav" data-panel="contacts">♡ &nbsp; Trusted contacts</button>
+      <button id="nav-sos" class="nav" data-panel="sos">✚ &nbsp; SOS assistance</button>
+      <button id="nav-reports" class="nav" data-panel="reports">▤ &nbsp; Incident reports</button>
+      <button id="nav-heatmap" class="nav" data-panel="heatmap">◎ &nbsp; Safety zones</button>
+    </aside>
+
+    <div class="main">
+      <div class="welcome">
+        <div>
+          <h1 id="dashboard-heading">Welcome to SafeHer ✦</h1>
+          <div class="subtitle">Your safety dashboard, thoughtfully designed around you.</div>
+        </div>
+        <div class="avatar">SH</div>
+      </div>
+
+      <section id="panel-overview" class="panel active">
+        <div class="banner">
+          <div>
+            <h3>Small steps. More confidence.</h3>
+            <p>Plan ahead, keep trusted people close, and know where your tools are.</p>
+          </div>
+          <span style="font-size:28px">🌿</span>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <small>Demo safety score</small>
+            <strong>86<span style="font-size:14px;color:var(--muted)">/100</span></strong>
+            <p class="subtitle">Sample score only</p>
+          </div>
+
+          <div class="stat">
+            <small>Trusted contacts</small>
+            <strong id="contact-count">0</strong>
+            <p class="subtitle">Saved in this session</p>
+          </div>
+
+          <div class="stat">
+            <small>Incident reports</small>
+            <strong id="report-count">0</strong>
+            <p class="subtitle">Created in this session</p>
+          </div>
+        </div>
+
+        <h2 class="section-title">Quick access</h2>
+
+        <div class="features">
+          <div class="card feature" data-open="routes" role="button" tabindex="0">
+            <div class="symbol">⌁</div>
+            <h3>Plan a safer route</h3>
+            <p>Compare illustrative route options.</p>
+          </div>
+
+          <div class="card feature" data-open="contacts" role="button" tabindex="0">
+            <div class="symbol">♡</div>
+            <h3>Trusted contacts</h3>
+            <p>Organise your demo contact list.</p>
+          </div>
+
+          <div class="card feature" data-open="sos" role="button" tabindex="0">
+            <div class="symbol">✚</div>
+            <h3>SOS assistance</h3>
+            <p>Explore the safe demo flow.</p>
+          </div>
+        </div>
+
+        <h2 class="section-title">Recent activity</h2>
+        <div class="card">
+          <div id="recent-activity" class="empty">Your activity will appear here as you explore the demo.</div>
+        </div>
+      </section>
+
+      <section id="panel-routes" class="panel">
+        <div class="panel-heading">
+          <h2>Safe route planner</h2>
+          <p>Enter a start and destination to see sample routes. These are not live navigation or verified safety predictions.</p>
+        </div>
+
+        <div class="card">
+          <form id="route-form" novalidate>
+            <div class="two-fields">
+              <div class="field">
+                <label for="start-location">Starting location</label>
+                <input id="start-location" placeholder="e.g. University campus">
+              </div>
+              <div class="field">
+                <label for="destination">Destination</label>
+                <input id="destination" placeholder="e.g. Central library">
+              </div>
+            </div>
+
+            <div id="route-error" class="message error hidden" role="alert"></div>
+            <button id="find-route-button" class="btn primary" type="submit">Find safe route →</button>
+          </form>
+
+          <div id="route-results" class="hidden" aria-live="polite">
+            <div class="result">
+              <h3>✦ Recommended safe route</h3>
+              <div class="metrics">
+                <div><strong>22 min</strong>Estimated time</div>
+                <div><strong>3.1 km</strong>Sample distance</div>
+                <div><strong>86/100</strong>Demo score</div>
+              </div>
+            </div>
+
+            <div class="result">
+              <h3>↗ Fastest route</h3>
+              <div class="metrics">
+                <div><strong>17 min</strong>Estimated time</div>
+                <div><strong>2.4 km</strong>Sample distance</div>
+                <div><strong>72/100</strong>Demo score</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="panel-contacts" class="panel">
+        <div class="panel-heading">
+          <h2>Trusted contacts</h2>
+          <p>Manage a demo list. No messages or calls are sent.</p>
+        </div>
+
+        <div class="card">
+          <form id="contact-form" novalidate>
+            <div class="two-fields">
+              <div class="field">
+                <label for="contact-name">Contact name</label>
+                <input id="contact-name" placeholder="e.g. Alex Morgan">
+              </div>
+              <div class="field">
+                <label for="contact-phone">Phone number</label>
+                <input id="contact-phone" type="tel" placeholder="e.g. 9876543210">
+              </div>
+            </div>
+
+            <div id="contact-error" class="message error hidden" role="alert"></div>
+            <div id="contact-success" class="message success hidden" role="status"></div>
+            <button id="add-contact-button" class="btn primary" type="submit">＋ Add contact</button>
+          </form>
+
+          <h2 class="section-title">Your contacts <span id="contact-list-label" class="subtitle">0 saved</span></h2>
+          <div id="contact-list" class="list">
+            <div class="empty">No contacts added yet.</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="panel-sos" class="panel">
+        <div class="panel-heading">
+          <h2>SOS assistance</h2>
+          <p>Preview the confirmation experience in demo mode.</p>
+        </div>
+
+        <div class="sos-box">
+          <div class="sos-circle">SOS</div>
+          <h2>Need help?</h2>
+          <p class="subtitle">This button only demonstrates the interface. It will not contact emergency services or other people.</p>
+          <button id="sos-button" class="btn danger" type="button">Activate SOS demo</button>
+          <div id="sos-status" class="message success hidden" role="status" style="margin-top:18px"></div>
+        </div>
+      </section>
+
+      <section id="panel-reports" class="panel">
+        <div class="panel-heading">
+          <h2>Incident reporting</h2>
+          <p>Record sample incidents for your project demonstration.</p>
+        </div>
+
+        <div class="card">
+          <form id="incident-form" novalidate>
+            <div class="field">
+              <label for="incident-type">Incident type</label>
+              <select id="incident-type">
+                <option value="">Select incident type</option>
+                <option>Harassment</option>
+                <option>Unsafe area</option>
+                <option>Poor lighting</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="incident-location">Location</label>
+              <input id="incident-location" placeholder="Where did it occur?">
+            </div>
+
+            <div class="field">
+              <label for="incident-description">Description</label>
+              <textarea id="incident-description" placeholder="Demo description"></textarea>
+            </div>
+
+            <div id="incident-error" class="message error hidden" role="alert"></div>
+            <div id="incident-success" class="message success hidden" role="status"></div>
+            <button id="submit-incident-button" class="btn primary" type="submit">Submit demo report</button>
+          </form>
+
+          <h2 class="section-title">Recent reports <span id="report-list-label" class="subtitle">0 reports</span></h2>
+          <div id="incident-list" class="list">
+            <div class="empty">No incident reports submitted.</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="panel-heatmap" class="panel">
+        <div class="panel-heading">
+          <h2>Illustrative safety zones</h2>
+          <p>This decorative map uses sample data, not live crime or safety information.</p>
+        </div>
+
+        <div class="card">
+          <div class="map">
+            <div class="zone" style="left:12%;top:15%"></div>
+            <div class="zone caution" style="left:60%;top:48%"></div>
+            <div class="zone" style="left:72%;top:10%;width:60px;height:60px"></div>
+            <div class="pin" style="left:35%;top:38%">Sample point</div>
+            <div class="pin" style="left:70%;top:72%;background:#B47C16">Caution</div>
+          </div>
+
+          <p class="subtitle">Green: sample safer zone · Amber: sample caution zone</p>
+          <p class="note">Do not use these illustrative zones to make real-world safety decisions.</p>
+        </div>
+      </section>
+
+      <footer>SafeHer student prototype · Simulated information only · Not an emergency service</footer>
+    </div>
+  </div>
+</main>
+
+<div id="sos-modal" class="modal-backdrop" role="dialog" aria-modal="true">
+  <div class="modal">
+    <h2>Activate SOS demo?</h2>
+    <p class="subtitle">This is only a demonstration. No alert, call, text message, or location sharing will happen.</p>
+    <div class="modal-actions">
+      <button id="sos-cancel-button" class="btn outline" type="button">Cancel</button>
+      <button id="sos-confirm-button" class="btn danger" type="button">Confirm demo</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+
+function message(id, text) {
+  $(id).textContent = text;
+  $(id).classList.remove("hidden");
+}
+
+function hide(id) {
+  $(id).textContent = "";
+  $(id).classList.add("hidden");
+}
+
+function logActivity(text) {
+  const box = $("recent-activity");
+
+  if (box.classList.contains("empty")) {
+    box.classList.remove("empty");
+    box.textContent = "";
+  }
+
+  const row = document.createElement("div");
+  row.className = "list-item";
+
+  const title = document.createElement("strong");
+  title.textContent = text;
+
+  const detail = document.createElement("small");
+  detail.textContent = "Just now · Demo session";
+
+  const wrap = document.createElement("div");
+  wrap.append(title, detail);
+  row.append(wrap);
+  box.prepend(row);
+}
+
+function dashboard() {
+  $("login-screen").classList.add("hidden");
+  $("dashboard").style.display = "block";
+  showPanel("overview");
+}
+
+function showPanel(name) {
+  document.querySelectorAll(".panel").forEach(p => p.classList.remove("active"));
+  $("panel-" + name).classList.add("active");
+
+  document.querySelectorAll(".nav").forEach(b =>
+    b.classList.toggle("active", b.dataset.panel === name)
+  );
+}
+
+$("login-form").addEventListener("submit", e => {
+  e.preventDefault();
+  hide("login-error");
+
+  const email = $("login-email").value.trim();
+  const password = $("login-password").value;
+
+  if (!email || !password) {
+    return message("login-error", "Please enter your email and password.");
+  }
+
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return message("login-error", "Please enter a valid email address.");
+  }
+
+  dashboard();
+  logActivity("Signed in using demo validation");
+});
+
+$("demo-login").addEventListener("click", () => {
+  $("login-email").value = "demo@safeher.test";
+  $("login-password").value = "DemoOnly123";
+
+  dashboard();
+  logActivity("Entered demo account");
+});
+
+document.querySelectorAll(".nav").forEach(b =>
+  b.addEventListener("click", () => showPanel(b.dataset.panel))
+);
+
+document.querySelectorAll("[data-open]").forEach(card => {
+  const go = () => showPanel(card.dataset.open);
+
+  card.addEventListener("click", go);
+
+  card.addEventListener("keydown", e => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      go();
+    }
+  });
+});
+
+$("route-form").addEventListener("submit", e => {
+  e.preventDefault();
+  hide("route-error");
+  $("route-results").classList.add("hidden");
+
+  if (!$("start-location").value.trim() || !$("destination").value.trim()) {
+    return message("route-error", "Please enter both starting location and destination.");
+  }
+
+  $("route-results").classList.remove("hidden");
+  logActivity("Viewed illustrative route options");
+});
+
+let contacts = [];
+
+function renderContacts() {
+  const list = $("contact-list");
+  list.textContent = "";
+
+  $("contact-count").textContent = contacts.length;
+  $("contact-list-label").textContent = contacts.length + " saved";
+
+  if (!contacts.length) {
+    const empty = document.createElement("div");
+    empty.className = "empty";
+    empty.textContent = "No contacts added yet.";
+    list.append(empty);
+    return;
+  }
+
+  contacts.forEach(c => {
+    const row = document.createElement("div");
+    row.className = "list-item";
+
+    const wrap = document.createElement("div");
+
+    const name = document.createElement("strong");
+    name.textContent = c.name;
+
+    const phone = document.createElement("small");
+    phone.textContent = c.phone;
+
+    wrap.append(name, phone);
+
+    const del = document.createElement("button");
+    del.className = "btn outline";
+    del.textContent = "Delete";
+    del.dataset.deleteContact = c.id;
+
+    row.append(wrap, del);
+    list.append(row);
+  });
+}
+
+$("contact-form").addEventListener("submit", e => {
+  e.preventDefault();
+  hide("contact-error");
+  hide("contact-success");
+
+  const name = $("contact-name").value.trim();
+  const phone = $("contact-phone").value.trim();
+
+  if (!name || !phone) {
+    return message("contact-error", "Please enter both contact name and phone number.");
+  }
+
+  if (!/^[+]?[0-9\s()-]{7,18}$/.test(phone) ||
+      phone.replace(/\D/g, "").length < 7) {
+    return message("contact-error", "Please enter a valid phone number.");
+  }
+
+  contacts.push({
+    id: String(Date.now()) + Math.random(),
+    name,
+    phone
+  });
+
+  renderContacts();
+  $("contact-form").reset();
+
+  message("contact-success", "Contact added successfully.");
+  logActivity("Added an emergency contact");
+});
+
+$("contact-list").addEventListener("click", e => {
+  const button = e.target.closest("[data-delete-contact]");
+
+  if (!button) return;
+
+  contacts = contacts.filter(c => c.id !== button.dataset.deleteContact);
+  renderContacts();
+  logActivity("Deleted a contact");
+});
+
+$("sos-button").addEventListener("click", () =>
+  $("sos-modal").classList.add("open")
+);
+
+$("sos-cancel-button").addEventListener("click", () =>
+  $("sos-modal").classList.remove("open")
+);
+
+$("sos-confirm-button").addEventListener("click", () => {
+  $("sos-modal").classList.remove("open");
+
+  message(
+    "sos-status",
+    "SOS demo activated. No real emergency alert has been sent."
+  );
+
+  logActivity("Completed SOS demo simulation");
+});
+
+$("sos-modal").addEventListener("click", e => {
+  if (e.target === $("sos-modal")) {
+    $("sos-modal").classList.remove("open");
+  }
+});
+
+$("incident-form").addEventListener("submit", e => {
+  e.preventDefault();
+  hide("incident-error");
+  hide("incident-success");
+
+  const type = $("incident-type").value;
+  const location = $("incident-location").value.trim();
+  const description = $("incident-description").value.trim();
+
+  if (!type || !location || !description) {
+    return message(
+      "incident-error",
+      "Please complete incident type, location, and description."
+    );
+  }
+
+  const list = $("incident-list");
+
+  if (list.querySelector(".empty")) {
+    list.textContent = "";
+  }
+
+  const row = document.createElement("div");
+  row.className = "list-item";
+
+  const wrap = document.createElement("div");
+
+  const title = document.createElement("strong");
+  title.textContent = type;
+
+  const detail = document.createElement("small");
+  detail.textContent = location + " · " + description;
+
+  wrap.append(title, detail);
+  row.append(wrap);
+  list.prepend(row);
+
+  const count = list.querySelectorAll(".list-item").length;
+
+  $("report-count").textContent = count;
+  $("report-list-label").textContent =
+    count + (count === 1 ? " report" : " reports");
+
+  $("incident-form").reset();
+
+  message("incident-success", "Demo incident report submitted successfully.");
+  logActivity("Submitted a demo incident report");
+});
+
+renderContacts();
+</script>
+
+</body>
+</html>
+```
