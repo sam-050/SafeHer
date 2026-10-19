@@ -1,5 +1,7 @@
 # SafeHer – Women's Safety Website
 
+Live Website: https://sam-050.github.io/SafeHer/
+
 SafeHer is a web-based women's safety platform designed to promote personal security and provide easy access to essential safety resources. The website aims to empower women through technology by offering safety-focused features, emergency assistance, and useful information in an accessible and user-friendly interface.
 
 The project focuses on creating a secure, responsive, and easy-to-use website that helps users access safety tools and resources whenever needed.
